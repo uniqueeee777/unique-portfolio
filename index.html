@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="The personal portfolio of Unique Desyrre A. Resiloy: NLP, applied machine learning, and statistical research." />
+  <meta name="theme-color" content="#ecfaf5" />
+  <title>Unique Desyrre A. Resiloy | Personal Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <script defer src="data.js"></script>
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <main class="deck" id="deck" aria-label="Unique's personal portfolio">
+    <header class="header">
+      <button class="wordmark" id="homeButton" aria-label="Go to the first page"><span class="mark-icon">u<span>.</span></span> unique<span class="wordmark-dot">/</span></button>
+      <nav id="nav" class="nav" aria-label="Portfolio sections"></nav>
+      <button class="header-next" id="topNext" aria-label="Next page">↗</button>
+    </header>
+    <div id="slides" class="slide-stage" role="region" aria-live="polite" aria-label="Portfolio content"></div>
+    <footer class="footer" aria-label="Page controls">
+      <div class="progress-track" aria-hidden="true"><span id="progressFill"></span></div>
+      <div class="pagination">
+        <button class="arrow" id="prev" aria-label="Previous page">←</button>
+        <span class="counter" id="counter">01 <small>/ 13</small></span>
+        <button class="arrow" id="next" aria-label="Next page">→</button>
+      </div>
+    </footer>
+  </main>
+  <noscript>JavaScript is required to view this interactive portfolio. All content can be edited in data.js.</noscript>
+</body>
+</html>
