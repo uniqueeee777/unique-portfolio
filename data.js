@@ -392,6 +392,15 @@ fieldwork: [
   ],
 
 publications: [
+
+{
+  study: "master",
+  year: "2026",
+  type: "CONFERENCE PAPER",
+  title: "A Dual-Stream Recurrent Framework for News Sentiment Integration in Stock Return Forecasting",
+  source: "IEEE Xplore · ICAIMS 2026",
+  link: "https://ieeexplore.ieee.org/document/11766968"
+},
   {
     study: "master",
     year: "2025",
