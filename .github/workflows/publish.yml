@@ -43,7 +43,7 @@ jobs:
       - name: Prepare website
         run: |
           mkdir -p dist
-          cp index.html app.js data.js styles.css dist/
+          cp index.html app.js data.js styles.css portfolio-print.js portfolio-print.css dist/
           cp -R assets dist/assets
 
       - name: Configure Pages
