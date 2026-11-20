@@ -856,7 +856,7 @@ function renderExperience(i) {
             <span class="pw-card-note">RESEARCH / JOURNALS</span>
           </div>
           <h3>Scientific Publications</h3>
-          <p>Journal and conference papers, including manuscripts currently under review or in development.</p>
+          <p>Journal and conference papers, including submitted manuscripts and ongoing research.</p>
           <button type="button" class="pw-action" data-pw-open="science">Browse publications <span aria-hidden="true">↗</span></button>
         </article>
         <article class="pw-card pw-card-writing">
