@@ -320,16 +320,17 @@ fieldwork: [
 
   // Current scientific manuscripts: avoid duplicating published papers in Education.
   scientificWorks: {
-    review: [
-      {
-        short: "From News to Policy Signals",
-        title: "From News to Policy Signals: Linking Human Trafficking Narratives with District-Level Socioeconomic Conditions in East Nusa Tenggara",
-        kind: "CONFERENCE MANUSCRIPT",
-        venue: "Joint International Conference 2026 · IFLP & ICDSOS",
-        description: "A study linking narratives in human trafficking news with district-level socioeconomic conditions across East Nusa Tenggara.",
-        stage: "Submitted — awaiting acceptance decision."
-      }
-    ],
+    
+review: [
+  {
+    short: "Comparative Topic Modeling for Human Trafficking News",
+    title: "Comparative Topic Modeling for Geographic and Socioeconomic Analysis of Human Trafficking News in East Nusa Tenggara",
+    kind: "JOURNAL MANUSCRIPT",
+    venue: "Parameter: Jurnal Matematika, Statistika dan Terapannya",
+    description: "A comparative evaluation of topic representations for analyzing human trafficking news in East Nusa Tenggara, with attention to geographic and socioeconomic contexts.",
+    stage: "Submitted on 20 November 2026 — awaiting editorial update."
+  }
+],
     progress: [
       {
         short: "Understanding Workforce Skills Development",

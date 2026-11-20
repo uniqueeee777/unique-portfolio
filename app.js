@@ -879,7 +879,8 @@ function renderExperience(i) {
         </div>
         <div class="pw-tabbar" role="tablist" aria-label="Publication status">
           <button class="pw-tab" type="button" role="tab" data-pw-status="published" aria-selected="false">Published</button>
-          <button class="pw-tab" type="button" role="tab" data-pw-status="review" aria-selected="true">Under Review</button>
+          <button class="pw-tab" type="button" role="tab" 
+          data-pw-status="review" aria-selected="true">Submissions</button>
           <button class="pw-tab" type="button" role="tab" data-pw-status="progress" aria-selected="false">In Progress</button>
         </div>
         <div class="pw-science-body" id="pwScienceBody"></div>
@@ -930,7 +931,19 @@ function renderCertificates() {
   }
   function renderContact() {
     const p=data.profile;
-    return `<section class="slide contact-slide" id="contact"><div class="contact-grid"><div class="contact-left"><div class="section-label">08 / KEEP IN TOUCH</div><h2>Let's talk<br><em>data.</em></h2><p>Thanks for exploring my work. I'm always glad to connect over research, data analysis, and ideas worth investigating.</p><div class="contact-orbit" aria-hidden="true"><span></span><span></span><span></span></div></div><div class="contact-panel"><div class="contact-panel-top"><span>CONNECT WITH ME</span><span>↗</span></div>${contactRow('LinkedIn',p.name,p.linkedin)}${p.email?contactRow('Email',p.email,`mailto:${p.email}`):''}${p.github?contactRow('GitHub','Research code',p.github):''}${p.tableau?contactRow('Tableau','Tableau Public',p.tableau):''}${p.cv?link(p.cv,'Download CV','contact-cta'):''}<div class="contact-sig">${esc(p.name)}</div></div></div></section>`;
+    return `<section class="slide contact-slide" id="contact"><div class="contact-grid"><div class="contact-left"><div class="section-label">08 / KEEP IN TOUCH</div><h2>Let's talk<br><em>data.</em></h2><p>Thanks for exploring my work. I'm always glad to connect over research, data analysis, and ideas worth investigating.</p><div class="contact-orbit" aria-hidden="true"><span></span><span></span><span></span></div></div><div class="contact-panel"><div class="contact-panel-top"><span>CONNECT WITH ME</span><span>↗</span></div>${contactRow('LinkedIn',p.name,p.linkedin)}${p.email?contactRow('Email',p.email,`mailto:${p.email}`):''}${p.github?contactRow('GitHub','Research code',p.github):''}${p.tableau?contactRow('Tableau','Tableau Public',p.tableau):''}
+${p.cv?link(p.cv,'Download CV','contact-cta'):''}
+
+<button
+  type="button"
+  class="contact-pdf-button"
+  onclick="window.print()"
+>
+  ↓ Save as PDF
+</button>
+
+<div class="contact-sig">
+${esc(p.name)}</div></div></div></section>`;
   }
   const renderers = { cover:renderCover, about:renderAbout, education:renderEducation, experience:renderExperience, focus:renderFocus, project:renderProject, lab:renderLab, publications:renderPublications, certifications:renderCertificates, contact:renderContact };
   $('slides').innerHTML = pages.map(p=>renderers[p.type](p.item)).join('');
@@ -1213,7 +1226,8 @@ initTeaching();
       }
       currentPaper = Math.min(currentPaper, items.length - 1);
       const list = `<div class="pw-paper-list">
-        <div class="pw-side-eyebrow">${status === 'review' ? 'AWAITING DECISION' : 'CURRENT MANUSCRIPTS'}</div>
+        
+<div class="pw-side-eyebrow">${status === 'review' ? 'SUBMITTED MANUSCRIPT' : 'CURRENT MANUSCRIPTS'}</div>
         ${items.map((p,i)=>`<button type="button" class="pw-paper-option" data-pw-paper="${i}" aria-selected="${i===currentPaper}">
           <span class="pw-option-kicker">${esc(p.kind)}</span>
           <strong>${esc(p.short)}</strong>
