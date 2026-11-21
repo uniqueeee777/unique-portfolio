@@ -38,8 +38,8 @@
 /* Site integration: hide the 8-page interactive deck and print only our 7 sheets. */
 @media print {
   html, body { display:block !important; width:auto !important; height:auto !important; min-height:0 !important; overflow:visible !important; padding:0 !important; margin:0 !important; }
-  body > *:not(#portfolio-print-root) { display:none !important; }
-  #portfolio-print-root { display:block !important; position:static !important; width:auto !important; height:auto !important; padding:0 !important; margin:0 !important; }
+  body.portfolio-print-ready > *:not(#portfolio-print-root) { display:none !important; }
+  body.portfolio-print-ready #portfolio-print-root { display:block !important; position:static !important; width:auto !important; height:auto !important; padding:0 !important; margin:0 !important; }
   #portfolio-print-root .sheet { display:block !important; box-sizing:border-box !important; }
   #portfolio-print-root .sheet:last-child { break-after:auto !important; page-break-after:auto !important; }
   #portfolio-print-root .sheet-page {color:#2760a5!important;}
@@ -53,4 +53,155 @@
 /* MarkPlus original dark-logo PNG: retain its purple emblem on white. */
 @media print {
  #portfolio-print-root .field-logo.wide { filter:brightness(0) saturate(100%) invert(19%) sepia(25%) saturate(1050%) hue-rotate(159deg) brightness(95%) contrast(94%); }
+}
+
+@media print { body:not(.portfolio-print-ready) #portfolio-print-root {display:none !important;} }
+
+/* Isolate the PDF Education cards from similarly named interactive-site styles. */
+@media print {
+  #portfolio-print-root .edu-card {
+    display: block !important;
+    grid-template-columns: none !important;
+    grid-template-rows: none !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+  }
+  #portfolio-print-root .edu-title,
+  #portfolio-print-root .edu-meta,
+  #portfolio-print-root .edu-pubs { width: auto !important; min-width: 0 !important; }
+}
+
+/* MarkPlus: dark wordmark + original purple emblem on a white badge. */
+@media print {
+ #portfolio-print-root .field-markplus-badge { position:relative; width:78px; height:30px; display:inline-block; flex:0 0 78px; border:1px solid #e2ebee; border-radius:8px; background:#fff; overflow:hidden; vertical-align:middle; }
+ #portfolio-print-root .field-markplus-badge img { position:absolute; inset:0; width:100%; height:100%; object-fit:contain; padding:3px; }
+ #portfolio-print-root .field-markplus-badge .field-markplus-dark { filter:brightness(0) saturate(100%) invert(19%) sepia(25%) saturate(1050%) hue-rotate(159deg) brightness(95%) contrast(94%); }
+ #portfolio-print-root .field-markplus-badge .field-markplus-color { clip-path:inset(0 72% 0 0); }
+}
+
+@media print { #portfolio-print-root .field-logo.wide { filter:none !important; } }
+@media print { #portfolio-print-root .field-logo.wide { width:36px !important; } }
+
+/* =========================================================
+   2026-11 readability revision — A4 landscape / HR edition
+   Scoped to the print root. Website CSS remains unchanged.
+   ========================================================= */
+@media print {
+  #portfolio-print-root .sheet {
+    background:#fff !important;
+  }
+  #portfolio-print-root .sheet-h2{font-size:36px !important;margin:9px 0 12px !important;}
+  #portfolio-print-root .sheet-tag{font-size:11px !important;}
+  #portfolio-print-root .sheet-lead{font-size:13.3px !important;line-height:1.5 !important;margin-bottom:17px !important;max-width:none !important;}
+  #portfolio-print-root .overline{font-size:11px !important;letter-spacing:.12em !important;}
+  #portfolio-print-root .small{font-size:12.1px !important;line-height:1.53 !important;}
+  #portfolio-print-root .tiny{font-size:11px !important;line-height:1.5 !important;}
+  #portfolio-print-root .micro{font-size:10px !important;line-height:1.5 !important;}
+  #portfolio-print-root .link{font-size:10.7px !important;}
+  #portfolio-print-root .panel{border-radius:17px !important;}
+
+  /* Profile — larger reading type */
+  #portfolio-print-root .about-layout{grid-template-columns:1.38fr .9fr !important;gap:15px !important;margin-top:19px !important;height:132mm !important;}
+  #portfolio-print-root .about-paras{padding:25px !important;}
+  #portfolio-print-root .about-paras p{font-size:13.2px !important;line-height:1.64 !important;margin:0 0 17px !important;}
+  #portfolio-print-root .about-quote p{font-size:25px !important;line-height:1.3 !important;}
+  #portfolio-print-root .about-glance dt{font-size:11.4px !important;}
+  #portfolio-print-root .about-glance dd{font-size:11.4px !important;}
+  #portfolio-print-root .about-glance dl div{padding:10px 0 !important;}
+
+  /* Education: the two university cards plus readable campus involvement */
+  #portfolio-print-root .pdf-education-grid{display:grid !important;grid-template-columns:repeat(2,minmax(0,1fr)) !important;gap:14px !important;}
+  #portfolio-print-root .pdf-edu-card{display:block !important;min-width:0 !important;padding:15px 17px !important;background:linear-gradient(145deg,#fff,#f4fffa) !important;border:1px solid #d5e9ee !important;border-radius:16px !important;}
+  #portfolio-print-root .pdf-edu-card .edu-title{font-size:19px !important;line-height:1.24 !important;margin:5px 0 !important;}
+  #portfolio-print-root .pdf-edu-card .edu-meta{font-size:11.5px !important;}
+  #portfolio-print-root .pdf-edu-card .hr{margin:11px 0 !important;}
+  #portfolio-print-root .pdf-edu-card p.small{font-size:11.5px !important;line-height:1.48 !important;margin:8px 0 10px !important;}
+  #portfolio-print-root .pdf-edu-card .edu-pubs{margin-top:12px !important;}
+  #portfolio-print-root .pdf-pub-entry{padding:7px 0 6px !important;border-bottom:1px solid #d6e7ef !important;}
+  #portfolio-print-root .pdf-pub-entry:last-child{border-bottom:0 !important;}
+  #portfolio-print-root .pdf-pub-entry b{font-size:11.2px !important;line-height:1.32 !important;color:#173e5b;display:block !important;}
+  #portfolio-print-root .pdf-pub-meta{margin-top:3px !important;color:#66879b;font-size:10px !important;line-height:1.3 !important;}
+  #portfolio-print-root .pdf-pub-meta .link{font-size:10px !important;}
+  #portfolio-print-root .pdf-campus{margin-top:13px !important;}
+  #portfolio-print-root .pdf-campus-heading{font-size:11px !important;letter-spacing:.13em !important;font-weight:900 !important;color:#1d7394 !important;margin-bottom:8px !important;}
+  #portfolio-print-root .pdf-campus-grid{display:grid !important;grid-template-columns:repeat(2,minmax(0,1fr)) !important;gap:12px !important;}
+  #portfolio-print-root .pdf-campus-card{padding:11px 14px !important;border-radius:12px !important;background:linear-gradient(130deg,#edf6ff,#edfff8) !important;border:1px solid #d5e8f2 !important;min-width:0 !important;}
+  #portfolio-print-root .pdf-campus-date{font-size:9.5px !important;color:#2c7198;font-weight:900 !important;}
+  #portfolio-print-root .pdf-campus-card strong{display:block !important;font-size:12px !important;line-height:1.27 !important;color:#173f68;margin:3px 0 !important;}
+  #portfolio-print-root .pdf-campus-place{font-size:10.3px !important;color:#38788e !important;}
+  #portfolio-print-root .pdf-campus-card p{font-size:10.5px !important;line-height:1.38 !important;margin:4px 0 0 !important;color:#57778c !important;}
+
+  /* Teaching photos without gradients over the image; captions readable */
+  #portfolio-print-root .teach-layout{grid-template-columns:49% 51% !important;height:132mm !important;gap:14px !important;}
+  #portfolio-print-root .teach-photos{height:112mm !important;gap:7px !important;}
+  #portfolio-print-root .teach-photos figure{display:flex !important;flex-direction:column !important;background:#eef6fa !important;}
+  #portfolio-print-root .teach-photos img{height:calc(100% - 23px) !important;width:100% !important;object-fit:cover !important;}
+  #portfolio-print-root .teach-photos figcaption{display:block !important;position:static !important;padding:5px 5px !important;min-height:23px !important;background:#e7f1f8 !important;color:#255d7b !important;font-size:9.2px !important;line-height:1.3 !important;text-align:left !important;}
+  #portfolio-print-root .teach-course{padding:15px 17px !important;margin-bottom:12px !important;}
+  #portfolio-print-root .teach-course h3{font-size:20px !important;}
+  #portfolio-print-root .teach-course p{font-size:12.6px !important;line-height:1.48 !important;margin:8px 0 !important;}
+  #portfolio-print-root .teach-resource{gap:7px !important;margin-top:10px !important;}
+  #portfolio-print-root .teach-resource span{font-size:10.6px !important;padding:8px 9px !important;line-height:1.28 !important;}
+
+  /* Fieldwork — larger body while preserving all three roles */
+  #portfolio-print-root .field-entries{height:133mm !important;gap:10px !important;margin-top:15px !important;}
+  #portfolio-print-root .field-card{padding:13px 16px !important;grid-template-columns:53% 47% !important;gap:13px !important;}
+  #portfolio-print-root .field-name{font-size:16px !important;line-height:1.2 !important;}
+  #portfolio-print-root .field-role{font-size:11.8px !important;}
+  #portfolio-print-root .field-desc{font-size:11.4px !important;line-height:1.45 !important;margin-top:7px !important;}
+  #portfolio-print-root .field-card .status{font-size:10px !important;}
+  #portfolio-print-root .field-tasks{padding:12px 13px !important;}
+  #portfolio-print-root .field-tasks strong{font-size:10.5px !important;}
+  #portfolio-print-root .field-tasks li{font-size:11.5px !important;line-height:1.45 !important;margin:8px 0 0 !important;}
+
+  /* Publications — fuller cards, shorter research titles, no status columns */
+  #portfolio-print-root .pdf-writing-layout{display:grid !important;grid-template-columns:1fr 1fr !important;gap:17px !important;margin-top:17px !important;}
+  #portfolio-print-root .pdf-writing-column{padding:21px !important;border:1px solid #d6e7f0 !important;border-radius:18px !important;background:linear-gradient(138deg,#f4f8ff,#fff) !important;min-height:126mm !important;}
+  #portfolio-print-root .pdf-articles-column{background:linear-gradient(150deg,#fff,#f0fff8) !important;}
+  #portfolio-print-root .pdf-writing-kicker{font-size:12px !important;color:#1a7793 !important;font-weight:900 !important;letter-spacing:.13em !important;margin-bottom:13px !important;}
+  #portfolio-print-root .pdf-research-item,#portfolio-print-root .pdf-article-item{padding:13px 0 15px !important;border-top:1px solid #dbe8f0 !important;}
+  #portfolio-print-root .pdf-research-item h3,#portfolio-print-root .pdf-article-item h3{font-size:17px !important;line-height:1.27 !important;margin:5px 0 7px !important;color:#133d62 !important;}
+  #portfolio-print-root .pdf-research-item p,#portfolio-print-root .pdf-article-item p{font-size:12px !important;line-height:1.46 !important;margin:0 0 4px !important;color:#4f758b !important;}
+  #portfolio-print-root .pdf-work-meta,#portfolio-print-root .pdf-article-meta{font-size:10.5px !important;color:#2f779a !important;font-weight:750 !important;line-height:1.45 !important;}
+  #portfolio-print-root .pdf-writing-note{font-size:11px !important;color:#5d8498 !important;padding-top:10px !important;border-top:1px solid #dbe8f0 !important;}
+
+  /* Project Lab — an entire page, not a tiny footer */
+  #portfolio-print-root .pdf-project-feature{background:linear-gradient(123deg,#e8f0ff,#e9fff6) !important;border:1px solid #cfe2ef !important;border-radius:19px !important;min-height:66mm !important;padding:25px 29px !important;position:relative !important;margin:16px 0 15px !important;overflow:hidden !important;}
+  #portfolio-print-root .pdf-project-feature-kicker,#portfolio-print-root .pdf-project-meta{font-size:11px !important;font-weight:900 !important;letter-spacing:.1em !important;color:#236f99 !important;}
+  #portfolio-print-root .pdf-project-feature h3{font-size:30px !important;color:#11375e !important;line-height:1.18 !important;margin:13px 0 !important;max-width:650px !important;}
+  #portfolio-print-root .pdf-project-feature p{font-size:14px !important;color:#436b85 !important;line-height:1.47 !important;max-width:650px !important;margin:9px 0 !important;}
+  #portfolio-print-root .pdf-project-feature .pdf-project-note{font-size:11.8px !important;color:#50758b !important;}
+  #portfolio-print-root .pdf-feature-symbol{position:absolute;right:21px;top:10px;color:#6ddbc7;opacity:.35;font-size:130px !important;}
+  #portfolio-print-root .pdf-project-secondary{display:grid !important;grid-template-columns:repeat(2,minmax(0,1fr)) !important;gap:15px !important;}
+  #portfolio-print-root .pdf-project-card{border:1px solid #d6e8f0 !important;border-radius:17px !important;padding:19px 22px !important;min-height:59mm !important;background:linear-gradient(135deg,#fff,#f4faff) !important;}
+  #portfolio-print-root .pdf-project-card h3{font-size:20px !important;line-height:1.22 !important;color:#14395d !important;margin:10px 0 !important;}
+  #portfolio-print-root .pdf-project-card p{font-size:13px !important;line-height:1.47 !important;color:#567b8d !important;margin:0 0 11px !important;}
+  #portfolio-print-root .pdf-project-card .pdf-project-note{font-size:11.6px !important;line-height:1.4 !important;color:#5a7f96 !important;}
+  #portfolio-print-root .pdf-project-disclaimer{font-size:10px !important;color:#5f8497 !important;margin:11px 0 0 !important;}
+  /* Contact  */
+  #portfolio-print-root .contact-copy{font-size:15px !important;}
+  #portfolio-print-root .contact-link a{font-size:14px !important;}
+  #portfolio-print-root .contact-link strong{font-size:10px !important;}
+}
+
+@media print {
+ #portfolio-print-root .pdf-edu-card{padding:13px 15px !important;}
+ #portfolio-print-root .pdf-edu-card p.small{font-size:11.6px !important;line-height:1.46 !important;margin:7px 0 7px !important;}
+ #portfolio-print-root .pdf-pub-entry{padding:5px 0 5px !important;}
+ #portfolio-print-root .pdf-pub-entry b{font-size:11.1px !important;line-height:1.25 !important;}
+ #portfolio-print-root .pdf-campus{margin-top:11px !important;}
+ #portfolio-print-root .pdf-campus-card{padding:10px 13px !important;}
+ #portfolio-print-root .pdf-campus-card p{font-size:10.7px !important;line-height:1.37 !important;}
+ #portfolio-print-root .field-entries{height:130mm !important;}
+ #portfolio-print-root .field-desc{font-size:12.2px !important;line-height:1.5 !important;}
+}
+
+/* Keep both campus-involvement cards clear of the fixed footer. */
+@media print {
+  #portfolio-print-root #pdf-education .sheet-h2{font-size:33px !important;margin:6px 0 7px !important;}
+  #portfolio-print-root #pdf-education .sheet-lead{margin-bottom:10px !important;}
+  #portfolio-print-root #pdf-education .pdf-pub-entry{padding:3px 0 !important;}
+  #portfolio-print-root #pdf-education .pdf-campus{margin-top:7px !important;}
+  #portfolio-print-root #pdf-education .pdf-campus-heading{margin-bottom:6px !important;}
+  #portfolio-print-root #pdf-education .pdf-campus-card{padding:7px 12px !important;}
 }

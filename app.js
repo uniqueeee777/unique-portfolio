@@ -13,7 +13,7 @@
     { id:'experience-1', label:'Teaching', type:'experience', item:0 },
     { id:'experience-2', label:'Fieldwork', type:'experience', item:1 },
     { id:'publications', label:'Publications & Writing', type:'publications' },
-    { id:'dashboard-lab', label:'Dashboard Lab', type:'lab' },
+    { id:'dashboard-lab', label:'Project Lab', type:'lab' },
     { id:'contact', label:'Contact', type:'contact' }
   ];
 
@@ -840,8 +840,20 @@ function renderExperience(i) {
     </section>`;
   }
   function renderLab() {
-    return `<section class="slide" id="dashboard-lab">${heading('Dashboard Lab', '07 / DASHBOARD LAB')}<p class="focus-intro">A separate space for interactive data work. These projects are planned, not completed.</p>
-      <div class="lab-grid">${(data.dashboardLab||[]).map((l,i)=>`<article class="glass-panel lab-card"><div class="lab-illustration lab-illustration-${i+1}"><span class="lab-line l1"></span><span class="lab-line l2"></span><span class="lab-line l3"></span><span class="lab-ring"></span></div><span class="lab-status">${esc(l.status)}</span><h3>${esc(l.title)}</h3><p>${esc(l.text)}</p>${link(l.link,'View dashboard')}</article>`).join('')}</div>
+    const projects = data.projectLab || [];
+    return `<section class="slide" id="dashboard-lab">
+      ${heading('Project Lab', '07 / PROJECTS & EXPERIMENTS')}
+      <p class="focus-intro">Work in progress across data visualization and AI automation. Current stages are shown so experiments are not mistaken for completed projects.</p>
+      <div class="lab-grid lab-projects">
+        ${projects.map((project, i) => `<article class="glass-panel lab-card lab-project-card lab-project-${i + 1}">
+          <div class="lab-project-top"><span class="lab-project-type">${esc(project.category)}</span><span class="lab-status">${esc(project.status)}</span></div>
+          <div class="lab-project-glyph" aria-hidden="true">${['✳','▥','◫'][i % 3]}</div>
+          <h3>${esc(project.title)}</h3>
+          <p>${esc(project.text)}</p>
+          ${project.note ? `<div class="lab-project-note">${esc(project.note)}</div>` : ''}
+          ${link(project.link, 'View project', 'text-link')}
+        </article>`).join('')}
+      </div>
     </section>`;
   }
      function renderPublications() {
@@ -856,7 +868,7 @@ function renderExperience(i) {
             <span class="pw-card-note">RESEARCH / JOURNALS</span>
           </div>
           <h3>Scientific Publications</h3>
-          <p>Journal and conference papers, including submitted manuscripts and ongoing research.</p>
+          <p>Journal and conference papers, alongside a brief selection of ongoing research.</p>
           <button type="button" class="pw-action" data-pw-open="science">Browse publications <span aria-hidden="true">↗</span></button>
         </article>
         <article class="pw-card pw-card-writing">
@@ -873,16 +885,11 @@ function renderExperience(i) {
         <div class="pw-dialog-heading">
           <div class="pw-dialog-title">
             <div class="pw-dialog-icon" aria-hidden="true">${icon('book')}</div>
-            <div><h3>Scientific Publications</h3><p>Research manuscripts and their current stage.</p></div>
+            <div><h3>Scientific Publications</h3><p>Selected research, including work currently being developed.</p></div>
           </div>
           <button type="button" class="pw-close" data-pw-close aria-label="Close scientific publications">×</button>
         </div>
-        <div class="pw-tabbar" role="tablist" aria-label="Publication status">
-          <button class="pw-tab" type="button" role="tab" data-pw-status="published" aria-selected="false">Published</button>
-          <button class="pw-tab" type="button" role="tab" 
-          data-pw-status="review" aria-selected="true">Submissions</button>
-          <button class="pw-tab" type="button" role="tab" data-pw-status="progress" aria-selected="false">In Progress</button>
-        </div>
+        <div class="pw-science-caption">A concise look at current research. Published papers are linked in Education.</div>
         <div class="pw-science-body" id="pwScienceBody"></div>
       </dialog>
       <dialog id="pwArticleDialog" class="pw-dialog" aria-label="Browse published articles">
@@ -1191,61 +1198,27 @@ initTeaching();
     const articleDialog = $('pwArticleDialog');
     const papers = data.scientificWorks || {};
     const articles = data.articles || [];
-    let status = 'review';
-    let currentPaper = 0;
     let currentArticle = 0;
 
     const safePublishedUrl = value =>
       typeof value === 'string' && /^https:\/\/[^\s]+$/i.test(value);
 
     function drawScience() {
-      section.querySelectorAll('[data-pw-status]').forEach(tab => {
-        const selected = tab.dataset.pwStatus === status;
-        tab.setAttribute('aria-selected', String(selected));
-        tab.tabIndex = selected ? 0 : -1;
-      });
       const target = $('pwScienceBody');
-      if (status === 'published') {
-        target.innerHTML = `
-          <div class="pw-published-view">
-            <div class="pw-published-symbol" aria-hidden="true">${icon('book')}</div>
-            <div class="pw-published-copy">
-              <span class="pw-data-label">ACADEMIC RECORD</span>
-              <h4>Earlier academic publications</h4>
-              <p>My published papers and conference proceedings are already linked in Education. You can open that collection directly.</p>
-              <button class="pw-education-link" type="button" data-pw-education>See publications in Education ↗</button>
-            </div>
-            <div class="pw-published-pattern" aria-hidden="true"></div>
-          </div>`;
-        return;
-      }
-      const items = status === 'review' ? (papers.review || []) : (papers.progress || []);
-      if (!items.length) {
-        target.innerHTML = '<p class="pw-empty">No manuscripts listed for this stage yet.</p>';
-        return;
-      }
-      currentPaper = Math.min(currentPaper, items.length - 1);
-      const list = `<div class="pw-paper-list">
-        
-<div class="pw-side-eyebrow">${status === 'review' ? 'SUBMITTED MANUSCRIPT' : 'CURRENT MANUSCRIPTS'}</div>
-        ${items.map((p,i)=>`<button type="button" class="pw-paper-option" data-pw-paper="${i}" aria-selected="${i===currentPaper}">
-          <span class="pw-option-kicker">${esc(p.kind)}</span>
-          <strong>${esc(p.short)}</strong>
-          <span class="pw-option-meta">${esc(p.venue)}</span>
-        </button>`).join('')}
-        <p class="pw-side-note">Select a manuscript to read its focus and current stage.</p>
+      const items = [...(papers.review || []), ...(papers.progress || [])];
+      target.innerHTML = `<div class="pw-research-summary">
+        <div class="pw-research-intro"><div class="pw-side-eyebrow">SELECTED RESEARCH</div>
+          <p>Short summaries of current manuscripts and research ideas. Full titles and publication records appear when work is published.</p></div>
+        <div class="pw-research-cards">
+          ${items.map((paper, i) => `<article class="pw-research-card">
+            <div class="pw-research-card-top"><span>0${i + 1} / RESEARCH</span><span>${esc(paper.stageLabel || 'Research development')}</span></div>
+            <h4>${esc(paper.portfolioTitle || paper.short)}</h4>
+            <p>${esc(paper.portfolioSummary || paper.description)}</p>
+            ${paper.venue && i === 0 ? `<small>${esc(paper.venue)}</small>` : ''}
+          </article>`).join('')}
+        </div>
+        <button class="pw-education-link pw-research-education" type="button" data-pw-education>See published papers in Education ↗</button>
       </div>`;
-      const p = items[currentPaper];
-      const detail = `<div class="pw-paper-detail"><article class="pw-paper-sheet">
-        <div class="pw-paper-sheet-top"><span class="pw-data-label">SCIENTIFIC MANUSCRIPT</span><span class="pw-sheet-symbol" aria-hidden="true">${icon('book')}</span></div>
-        <h4>${esc(p.title)}</h4>
-        <p class="pw-paper-venue">${esc(p.venue)}</p>
-        <div class="pw-paper-rule"></div>
-        <div class="pw-paper-fact"><span>RESEARCH FOCUS</span><p>${esc(p.description)}</p></div>
-        <div class="pw-paper-fact"><span>CURRENT STAGE</span><p>${esc(p.stage)}</p></div>
-        <p class="pw-paper-note">This manuscript is not publicly available. A reading link will be added after publication.</p>
-      </article></div>`;
-      target.innerHTML = list + detail;
     }
 
     function drawArticleList() {
@@ -1293,7 +1266,7 @@ initTeaching();
       const open = event.target.closest('[data-pw-open]');
       if (open) {
         if (open.dataset.pwOpen === 'science') {
-          status = 'review'; currentPaper = 0; drawScience(); scientific.showModal();
+          drawScience(); scientific.showModal();
         } else {
           currentArticle = 0; showArticle(0); articleDialog.showModal();
         }
@@ -1303,19 +1276,6 @@ initTeaching();
       if (close) {
         const dialog = close.closest('dialog');
         if (dialog?.open) dialog.close();
-        return;
-      }
-      const tab = event.target.closest('[data-pw-status]');
-      if (tab) {
-        status = tab.dataset.pwStatus;
-        currentPaper = 0;
-        drawScience();
-        return;
-      }
-      const paper = event.target.closest('[data-pw-paper]');
-      if (paper) {
-        currentPaper = Number(paper.dataset.pwPaper);
-        drawScience();
         return;
       }
       const a = event.target.closest('[data-pw-article]');

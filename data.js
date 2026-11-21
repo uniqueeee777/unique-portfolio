@@ -40,6 +40,7 @@ education: [
 
     academicWork: "During my master's, I worked with different types of data and methods, particularly statistical modeling, machine learning, and natural language processing. My research involved preparing datasets, building and evaluating models, and interpreting results across financial, health, and text-based applications. I also gained practical teaching experience through data science and visualization classes at IPB.",
 
+    printSummary: "Applied statistical modeling, machine learning, and NLP to financial, health, and text data; from data preparation to model evaluation and interpretation. Also assisted teaching in data science and visualization.",
     beyond: [
       "LPDP Scholarship recipient",
       "Research presenter at IEEE ICAIMS 2026",
@@ -74,6 +75,7 @@ education: [
 
     academicWork: "My undergraduate work focused on applying statistical methods to regional and socioeconomic data, particularly in Maluku. I worked on poverty modeling, public-sector budget analysis, and forecasting using regression, clustering, and time-series methods. This was also where I began writing research papers and learning how to present statistical findings beyond the classroom.",
 
+    printSummary: "Applied regression, clustering, and time-series methods to socioeconomic data and public budgets in Maluku, alongside research writing and presentations.",
     beyond: [
       "Research presenter at IndoMS 2021",
       "Published undergraduate research in applied statistics"
@@ -252,6 +254,7 @@ fieldwork: [
 
     description:
       "I joined the 2020 Online Population Census as a student volunteer through a collaboration between BPS Maluku and Universitas Pattimura. I worked directly with residents, including those who were unfamiliar with the online census system. The role required patience, clear communication, and the ability to adjust explanations to different people.",
+    printSummary: "Supported residents in the 2020 Online Population Census by explaining the process and assisting people unfamiliar with digital registration.",
 
     responsibilities: [
       "Assisted residents in completing the online census.",
@@ -277,6 +280,7 @@ fieldwork: [
 
     description:
       "I worked with households assigned by the survey team rather than selecting respondents myself. The job involved visiting people at home, following the survey guidelines, and working around different household schedules. I also used KoboToolbox for digital data collection, where keeping records accurate and organized was part of the daily work.",
+    printSummary: "Conducted assigned household interviews for SNRT 2022, recorded responses in KoboToolbox, and checked records for completeness.",
 
     responsibilities: [
       "Conducted structured household interviews.",
@@ -301,6 +305,7 @@ fieldwork: [
 
     description:
       "At REGSOSEK 2022, I worked on the monitoring side of household data collection. Unlike my earlier role as an enumerator, I was responsible for checking work that had already been completed and identifying information that needed another look. The role also involved working with enumerators and returning to households when the reported information needed to be confirmed.",
+    printSummary: "Monitored household data collection, checked incomplete responses, coordinated corrections, and revisited households when verification was needed.",
 
     responsibilities: [
       "Reviewed survey forms for incomplete or inconsistent responses.",
@@ -310,13 +315,33 @@ fieldwork: [
   }
 ],
 
-  // Dashboard Lab remains available for future interactive projects.
-  dashboardLab: [
-    { title: "Research-to-Dashboard", status: "PLANNED", text: "Interactive views of selected published research, built around the results and limitations of each study.", link: "" },
-    { title: "Socioeconomic Data Explorer", status: "CONCEPT", text: "A space to examine regional indicators, compare locations, and explore trends using public datasets.", link: "" },
-    { title: "Tableau Practice Lab", status: "COMING LATER", text: "Hands-on Tableau work: exploring datasets, testing visual forms, and improving how findings are communicated.", link: "" }
+  // Project Lab: show actual stages, not completed-product claims.
+  projectLab: [
+    {
+      title: "Lexia · Personal AI Assistant",
+      category: "AI AUTOMATION",
+      status: "IN DEVELOPMENT",
+      text: "A WhatsApp-based personal assistant prototype exploring contextual memory, task organization, and automated workflows.",
+      note: "Architecture under development: n8n orchestration, PostgreSQL-backed memory, and WhatsApp integration.",
+      link: ""
+    },
+    {
+      title: "Socioeconomic Data Explorer",
+      category: "DATA DASHBOARD",
+      status: "CONCEPT",
+      text: "Exploring how regional indicators could be compared through accessible, interactive visualizations.",
+      note: "Dataset and dashboard design not yet finalized.",
+      link: ""
+    },
+    {
+      title: "Tableau Practice Lab",
+      category: "DATA VISUALIZATION",
+      status: "LEARNING",
+      text: "Practicing data preparation, chart design, and dashboard storytelling in Tableau.",
+      note: "Exercises and examples will be shared as they are completed.",
+      link: ""
+    }
   ],
-
 
   // Current scientific manuscripts: avoid duplicating published papers in Education.
   scientificWorks: {
@@ -328,7 +353,10 @@ review: [
     kind: "JOURNAL MANUSCRIPT",
     venue: "Parameter: Jurnal Matematika, Statistika dan Terapannya",
     description: "A comparative evaluation of topic representations for analyzing human trafficking news in East Nusa Tenggara, with attention to geographic and socioeconomic contexts.",
-    stage: "Submitted on 20 November 2026 — awaiting editorial update."
+    stage: "Submitted on 20 November 2026 — awaiting editorial update.",
+    portfolioTitle: "Topic modeling of human trafficking news in NTT",
+    portfolioSummary: "Comparing topic-modeling approaches for geographic and socioeconomic analysis of human trafficking news.",
+    stageLabel: "Submitted · Parameter"
   }
 ],
     progress: [
@@ -338,7 +366,10 @@ review: [
         kind: "SYSTEMATIC LITERATURE REVIEW",
         venue: "Workforce skills research · 118 empirical studies",
         description: "A systematic review examining what statistical research can establish about workforce skills, their development, and how they are used at work.",
-        stage: "Manuscript revision following an editorial decision."
+        stage: "Manuscript revision following an editorial decision.",
+        portfolioTitle: "Workforce skills: A review of statistical evidence",
+        portfolioSummary: "Reviewing methods and findings across 118 studies on workforce skills and development.",
+        stageLabel: "Manuscript revision"
       },
       {
         short: "Stability-Aware Model Selection for Multi-View Clustering",
@@ -346,7 +377,10 @@ review: [
         kind: "MONTE CARLO & APPLIED STATISTICS",
         venue: "Multi-view clustering · Food security in Eastern Indonesia",
         description: "A study evaluating internal clustering quality and resampling stability, followed by an application to food, climate, and accessibility indicators.",
-        stage: "Research and manuscript development in progress."
+        stage: "Research and manuscript development in progress.",
+        portfolioTitle: "Stability in multi-view clustering for food security",
+        portfolioSummary: "Studying clustering quality and resampling stability in food-security applications.",
+        stageLabel: "Research development"
       }
     ]
   },
